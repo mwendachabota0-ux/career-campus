@@ -8,7 +8,6 @@
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
   "engines": {
-    "node": ">=22.18.0",
     "pnpm": ">=9.0.0"
   },
   "private": true,

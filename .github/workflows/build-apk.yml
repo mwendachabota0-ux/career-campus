@@ -36,8 +36,7 @@ jobs:
       - name: Build APK with Expo
         working-directory: artifacts/mobile
         run: |
-          npx expo prebuild --clean --platform android
-          pnpm install
+          yes | npx expo prebuild --clean --platform android
           cd android
           chmod +x ./gradlew
           ./gradlew assembleRelease

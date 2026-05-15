@@ -7,6 +7,9 @@
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
+  "engines": {
+    "pnpm": ">=10.0.0"
+  },
   "private": true,
   "devDependencies": {
     "prettier": "^3.8.3",

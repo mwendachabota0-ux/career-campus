@@ -52,7 +52,17 @@ jobs:
           pnpm exec eas build --platform android --profile ${{ github.event.inputs.profile || 'preview' }} --non-interactive --json > eas-build.json
           BUILD_ID=$(jq -r 'if type == "array" then .[0].id else .id end' eas-build.json)
           echo "EAS build ID: $BUILD_ID"
-          pnpm exec eas build:download --build-id "$BUILD_ID" --path ./career-compass.apk
+          mkdir -p ./downloads
+          cd ./downloads
+          pnpm exec eas build:download --build-id "$BUILD_ID"
+          APK_FILE=$(find . -type f \( -name "*.apk" -o -name "*.aab" \) | head -n 1)
+          if [ -n "$APK_FILE" ]; then
+            mv "$APK_FILE" ../career-compass.apk
+            echo "APK downloaded and moved to ../career-compass.apk"
+          else
+            echo "No APK or AAB artifact found"
+            exit 1
+          fi
         working-directory: artifacts/mobile
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

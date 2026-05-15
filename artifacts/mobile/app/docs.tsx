@@ -51,7 +51,7 @@ const CATEGORY_COLORS: Record<DocCategory, { bg: string; icon: string; border: s
   'Other': { bg: 'rgba(255,255,255,0.08)', icon: 'rgba(255,255,255,0.6)', border: 'rgba(255,255,255,0.15)' },
 };
 
-const DOCS_DIR = `${FileSystem.documentDirectory}career-compass-docs/`;
+const DOCS_DIR = `${FileSystem.Paths.document.uri}career-compass-docs/`;
 
 function formatFileSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -134,7 +134,7 @@ export default function DocsScreen() {
 
       const apiBase = getApiBase();
       if (apiBase) {
-        FileSystem.readAsStringAsync(localUri, { encoding: FileSystem.EncodingType.Base64 })
+        FileSystem.readAsStringAsync(localUri, { encoding: 'base64' })
           .then(async base64 => {
             const res = await fetch(`${apiBase}/api/storage/extract-content`, {
               method: 'POST',

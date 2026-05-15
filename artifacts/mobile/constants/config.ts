@@ -6,6 +6,8 @@ const extra = (expoConfig.extra ?? {}) as {
   expoPublicDomain?: string;
 };
 
+const defaultApiBaseUrl = 'https://workspaceapi-server-production-a6c2.up.railway.app';
+
 export function getApiBase() {
   if (typeof extra.apiBaseUrl === 'string' && extra.apiBaseUrl.trim().length > 0) {
     return extra.apiBaseUrl.trim();
@@ -15,7 +17,7 @@ export function getApiBase() {
     return `https://${extra.expoPublicDomain.trim()}`;
   }
 
-  return '';
+  return defaultApiBaseUrl;
 }
 
 export function getPublicDomain() {

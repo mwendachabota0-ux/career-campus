@@ -26,7 +26,8 @@ const appJson = require('./app.json');
 const env = { ...process.env, ...loadDotenv() };
 
 const expoPublicDomain = env.EXPO_PUBLIC_DOMAIN || appJson.expo?.extra?.expoPublicDomain || '';
-const apiBaseUrl = env.API_BASE_URL || (expoPublicDomain ? `https://${expoPublicDomain}` : '');
+const defaultApiBaseUrl = 'https://workspaceapi-server-production-a6c2.up.railway.app';
+const apiBaseUrl = env.API_BASE_URL || (expoPublicDomain ? `https://${expoPublicDomain}` : defaultApiBaseUrl);
 
 module.exports = () => ({
   ...appJson,
